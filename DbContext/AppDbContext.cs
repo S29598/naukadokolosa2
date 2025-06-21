@@ -67,7 +67,9 @@ public class AppDbContext : DbContext
                 Id = 1,
                 EmployeeId = 1,
                 ProjectId = 1,
-                AssignmentDate = new DateTime(2024, 10, 1, 9, 0, 0)
+                AssignmentDate = new DateTime(2024, 10, 1, 9, 0, 0),
+                HoursPerWeek = 40,
+                Role = "Lead Developer"
             }
         };
         

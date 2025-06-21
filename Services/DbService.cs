@@ -1,4 +1,4 @@
-﻿/*using APDB_Kolokwium_template.DAL;
+﻿using APDB_Kolokwium_template.DAL;
 using APDB_Kolokwium_template.DTOs;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,28 +6,27 @@ namespace APDB_Kolokwium_template.Services;
 
 public class DbService(AppDbContext data) : IDbService
 {
-    public async Task<ICollection<ExampleGetDto>> GetAllExamplesAsync()
+    public async Task<ICollection<AssignmentGetDto>> GetAssignments()
     {
-        return await data.Examples.Select(e => new ExampleGetDto
+        return await data.Assignments.Select(e => new AssignmentGetDto
         {
-            Id = e.Id,
-            Text = e.Text,
-            OtherId = e.OtherId,
-        }).ToListAsync();
-    }
-
-    public async Task<ICollection<OtherGetDto>> GetAllOthersAsync()
-    {
-        return await data.Others.Select(other => new OtherGetDto
-        {
-            Id = other.Id,
-            Text = other.Text,
-            Examples = other.Examples.Select(e => new ExampleGetDto
+            employee = new EmployeeGetDto()
             {
-                Id = e.Id,
-                Text = e.Text,
-                OtherId = e.OtherId
-            }).ToList()
+                firstName = e.Employee.FirstName,
+                lastName = e.Employee.LastName,
+                position = e.Employee.Position
+            },
+            
+            project = new ProjectGetDto(){
+                id = e.Project.Id,
+                name = e.Project.Name,
+                budget = e.Project.Budget
+            },
+            
+            role = e.Role,
+            hoursPerWeek = e.HoursPerWeek,
+            assignmentDate = e.AssignmentDate
+            
         }).ToListAsync();
     }
-}*/
+};

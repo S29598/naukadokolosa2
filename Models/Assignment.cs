@@ -19,6 +19,9 @@ public class Assignment
     
     public int HoursPerWeek { get; set; }
     
+    [MaxLength(50)]
+    public string Role { get; set; } = null!;
+    
     [ForeignKey(nameof(ProjectId))]
     public virtual Project Project { get; set; } = null!;
     
