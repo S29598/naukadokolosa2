@@ -1,13 +1,14 @@
-﻿using APDB_Kolokwium_template.Models;
+﻿using APDB_Kolokwium_template.DTOs;
+using APDB_Kolokwium_template.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace APDB_Kolokwium_template.DAL;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<Other> Others { get; set; }
-    public DbSet<Example> Examples { get; set; }
-    
+    public DbSet<Assignment> Assignments { get; set; }
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Project> Projects { get; set; } 
     
     public AppDbContext(DbContextOptions options) : base(options) {}
 
@@ -15,44 +16,64 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        var others = new List<Other>
+        var employees = new List<Employee>
         {
             new()
             {
                 Id = 1,
-                Text = "Some text"
+                FirstName = "Anna",
+                LastName = "Kowalska",
+                Email = "anna.kowalska@example.eu",
+                Position = "Senior Developer",
+                Salary = 10000
             },
             new()
             {
                 Id = 2,
-                Text = "Some other text"
+                FirstName = "Tomasz",
+                LastName = "Kot",
+                Email = "tomasz.kot@example.eu",
+                Position = "Service Desk",
+                Salary = 5000
             }
         };
 
-        var examples = new List<Example>
+        var projects = new List<Project>
         {
             new()
             {
                 Id = 1,
-                Text = "Some text",
-                OtherId = 1
+                Name = "System CRM",
+                Description = "Opis",
+                StartDate = new DateTime(2025, 1, 1),
+                EndDate = new DateTime(2025, 12, 31),
+                Budget = 150000,
             },
             new()
             {
                 Id = 2,
-                Text = "Some other text",
-                OtherId = 2
+                Name = "System ABC",
+                Description = "Opis 2",
+                StartDate = new DateTime(2015, 1, 1),
+                EndDate = new DateTime(2015, 12, 31),
+                Budget = 250000,
             },
+        };
+
+        var assignments = new List<Assignment>
+        {
             new()
             {
-                Id = 3,
-                Text = "I'm a different example",
-                OtherId = 2
+                Id = 1,
+                EmployeeId = 1,
+                ProjectId = 1,
+                AssignmentDate = new DateTime(2024, 10, 1, 9, 0, 0)
             }
         };
         
-        modelBuilder.Entity<Other>().HasData(others);
-        modelBuilder.Entity<Example>().HasData(examples);
+        modelBuilder.Entity<Employee>().HasData(employees);
+        modelBuilder.Entity<Project>().HasData(projects);
+        modelBuilder.Entity<Assignment>().HasData(assignments);
     }
     
 }

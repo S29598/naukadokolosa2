@@ -17,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
-builder.Services.AddScoped<IDbService, DbService>();
+// builder.Services.AddScoped<IDbService, DbService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿using APDB_Kolokwium_template.DAL;
+﻿/*using APDB_Kolokwium_template.DAL;
 using APDB_Kolokwium_template.DTOs;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,4 +30,4 @@ public class DbService(AppDbContext data) : IDbService
             }).ToList()
         }).ToListAsync();
     }
-}
+}*/
